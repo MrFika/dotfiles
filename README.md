@@ -1,8 +1,12 @@
-Dotfiles Installation manual.
+Dotfiles installation readme.
 
+Dependencies:
+nvim:
+* ripgrep (install via apt)
+* nodejs & npm for language server installations. (https://github.com/nvm-sh/nvm)
 
+tmuxinator: https://github.com/tmuxinator/tmuxinator
+* ruby. (https://github.com/rvm/rvm)
 
-
-Install ruby to get tmuxinator:
-https://github.com/rvm/rvm
-https://github.com/tmuxinator/tmuxinator
+zsh:
+* oh-my-zsh. (https://github.com/ohmyzsh/ohmyzsh)
