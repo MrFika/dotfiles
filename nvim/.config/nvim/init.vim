@@ -158,6 +158,7 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 
+"
 " Copy to system clipboard.
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
@@ -372,4 +373,4 @@ set autoindent
 set termguicolors
 set background=dark
 colorscheme onedark
-
+set clipboard+=unnamedplus
