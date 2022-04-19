@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:$HOME/bin:/usr/local/bin
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:/usr/local/cuda/bin
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -77,7 +77,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip tmux tmuxinator)
+plugins=(git zsh-pyenv pip tmux tmuxinator)
+
+# zsh-pyenv plugin https://github.com/mattberther/zsh-pyenv
 
 source $ZSH/oh-my-zsh.sh
 
