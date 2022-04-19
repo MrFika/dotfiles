@@ -196,7 +196,6 @@ nnoremap <F5> :UndotreeToggle<CR>
 " NvimTree
 nnoremap <leader>n :NvimTreeToggle<CR>
 nnoremap <F4> :NvimTreeToggle<CR>
-let g:nvim_tree_indent_markers = 1
 let g:nvim_tree_highlight_opened_files = 1
 
 " Nvim tree config is being migrated to lua. Requires setup to be run AFTER g: settings.
@@ -206,11 +205,16 @@ require'nvim-tree'.setup{
     open_on_tab = false,
     diagnostic = {
         enable = false
-        },
+    },
     git = {
         enable = true,
         ignore = true,
         timeout = 500,
+    },
+    renderer = {
+        indent_markers = {
+            enable = true
+        }
     },
 }
 
