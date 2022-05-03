@@ -172,7 +172,7 @@ nnoremap Y y$
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ft <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fb <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " TEMPRORARY FIX FOR: https://github.com/neovim/neovim/issues/16416
@@ -305,6 +305,7 @@ nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>gc :lua vim.lsp.buf.incoming_calls()<CR>
 nnoremap <leader>gr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>r :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action<CR>
 
 nnoremap <C-space> :lua vim.lsp.buf.hover()<CR>
 " Find references & definitions.
@@ -329,7 +330,7 @@ vnoremap <silent> <A-k> :MoveBlock(-1)<CR>
 " let b:ale_fixers = {'python': ['add_blank_lines_for_python_control_statements', 'autoimport', 'autopep8'], '*': ['remove_trailing_lines']}
 let g:ale_linters = {'python': ['pylint', 'pycodestyle', 'pydocstyle', 'pyright']}
 let g:ale_python_pycodestyle_options = "--max-line-length=120"
-let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
+" let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_python_black_options = "--line-length 120"
 
 
