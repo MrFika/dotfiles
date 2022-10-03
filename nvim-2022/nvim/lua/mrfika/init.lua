@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- File tree to the left.
 require("nvim-tree").setup({
   open_on_setup = false,
   open_on_tab = false,
@@ -23,7 +24,15 @@ require("nvim-tree").setup({
   },
 })
 
-require("bufferline").setup{
+-- Statusline at the bottom of the screen.
+require('lualine').setup{
+  options = {
+    theme = 'catppuccin'
+  }
+}
+
+-- Buffer tabs at the top of the screen.
+require('bufferline').setup{
     options= {
       offsets = {{
             filetype = "NvimTree",
@@ -45,3 +54,13 @@ require('telescope').setup{
   }
 }
 require('telescope').load_extension('fzf')
+
+require('nvim-treesitter.configs').setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+require('Comment').setup()
+require('gitsigns').setup()

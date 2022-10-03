@@ -7,7 +7,6 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use { 'wbthomason/packer.nvim' }
   use { "catppuccin/nvim", as = "catppuccin" }
-  use { "williamboman/mason.nvim" }
   use { 'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
@@ -18,6 +17,12 @@ return require('packer').startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons', opt = true
+    }
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -36,4 +41,35 @@ return require('packer').startup(function(use)
   }
   use { 'nvim-treesitter/nvim-treesitter-context' }
   use { 'nvim-treesitter/playground' }
+
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+  -- use { 'neovim/nvim-lspconfig' }
+  use { 'hrsh7th/nvim-cmp'  }
+  use { 'hrsh7th/cmp-nvim-lsp'  }
+  use { 'hrsh7th/cmp-buffer'  }
+  use { 'hrsh7th/cmp-path'  }
+  use { 'hrsh7th/cmp-calc'  }
+  use { 'hrsh7th/cmp-vsnip'  }
+  use { 'hrsh7th/vim-vsnip'  }
+  -- use { 'andersevenrud/cmp-tmux' }
+  use { 'ray-x/cmp-treesitter' }
+  use { 'lukas-reineke/cmp-under-comparator'}
+  use { 'f3fora/cmp-spell' }
+  -- For nice little icons in the completion popup.
+  use { 'onsails/lspkind-nvim' }
+  -- Function Signature help.
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+
+  -- " Bracket, parenthesis autocompletion
+  use { 'windwp/nvim-autopairs' }
+
+
+  -- " Undo history
+
+  use { 'mbbill/undotree' }
+  use { 'dense-analysis/ale' }
 end)
