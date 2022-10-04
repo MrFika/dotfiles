@@ -14,10 +14,10 @@ require("nvim-tree").setup({
   },
   renderer = {
     indent_markers = {
-        enable = true,
+      enable = true,
     }
   },
-  git= {
+  git = {
     enable = true,
     ignore = true,
     timeout = 500,
@@ -25,32 +25,32 @@ require("nvim-tree").setup({
 })
 
 -- Statusline at the bottom of the screen.
-require('lualine').setup{
+require('lualine').setup {
   options = {
     theme = 'catppuccin'
   }
 }
 
 -- Buffer tabs at the top of the screen.
-require('bufferline').setup{
-    options= {
-      offsets = {{
-            filetype = "NvimTree",
-            text = "File explorer",
-            highlight = "Directory",
-            text_align = "left"
-          }},
+require('bufferline').setup {
+  options = {
+    offsets = {
+      filetype = "NvimTree",
+      text = "File explorer",
+      highlight = "Directory",
+      text_align = "left"
+    },
     diagnostics = "nvim_lsp"
-    }
+  }
 }
 
 require("mason").setup()
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     prompt_prefix = "$ ",
     -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    buffer_previewer_maker = require 'telescope.previewers'.buffer_previewer_maker
   }
 }
 require('telescope').load_extension('fzf')

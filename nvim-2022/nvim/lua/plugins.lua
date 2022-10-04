@@ -72,4 +72,5 @@ return require('packer').startup(function(use)
 
   use { 'mbbill/undotree' }
   use { 'dense-analysis/ale' }
+  use { 'ranelpadon/python-copy-reference.vim' }
 end)

@@ -33,23 +33,22 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
 vim.opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 
-local lua_settings = function ()
-    vim.opt.expandtab = true
-    vim.opt.tabstop = 2
-    vim.opt.softtabstop = 2
-    vim.opt.shiftwidth = 2
+local lua_settings = function()
+  vim.opt.expandtab = true
+  vim.opt.tabstop = 2
+  vim.opt.softtabstop = 2
+  vim.opt.shiftwidth = 2
 end
-local python_settings = function ()
-    vim.opt.expandtab = true
+local python_settings = function()
+  vim.opt.expandtab = true
 end
 
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {"*.py"},
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.py" },
   callback = python_settings
 })
 
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {"*.lua"},
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.lua" },
   callback = lua_settings
 })
-
