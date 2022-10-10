@@ -10,6 +10,11 @@ require("mason-lspconfig").setup({
   ensure_installed = { "sumneko_lua", "pyright", "vimls" }
 })
 
+-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
+require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
+
 -- CMP Completion
 -- Setup nvim-cmp.
 local cmp = require 'cmp'

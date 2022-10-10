@@ -27,8 +27,9 @@ require("nvim-tree").setup({
 -- Statusline at the bottom of the screen.
 require('lualine').setup {
   options = {
-    theme = 'catppuccin'
-  }
+    theme = 'auto'
+  },
+  global_status = true
 }
 
 -- Buffer tabs at the top of the screen.
@@ -64,3 +65,31 @@ require('nvim-treesitter.configs').setup {
 
 require('Comment').setup()
 require('gitsigns').setup()
+
+require('lint').linters_by_ft = {
+  python = { 'pylint', 'pycodestyle', 'pydocstyle', },
+  lua = { 'luacheck' }
+}
+
+local pycodestyle = require('lint.linters.pycodestyle')
+pycodestyle.args = {
+  '--line-length=120',
+  '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
+  '-',
+}
+local luacheck = require('lint.linters.luacheck')
+luacheck.args = {'--read-globals','vim', '--globals', 'vim.g', '--formatter', 'plain', '--codes', '--ranges', '-' }
+
+local pylint = require('lint.linters.pylint')
+pylint.args = {
+  '-f', 'json',
+  -- '-pylintrc', vim.fs.dirname(vim.fs.find({'pyproject.toml', 'setup.py'}, { upward = true })[1])
+  -- "--init-hook='import sys; sys.path.append(\".\")'",
+}
+-- let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})

@@ -22,7 +22,6 @@ vim.opt.autoindent = true
 
 vim.opt.termguicolors = true
 vim.opt.background = "light"
--- colorscheme onedark
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.wrap = false
@@ -52,3 +51,5 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.lua" },
   callback = lua_settings
 })
+
+vim.opt.laststatus = 3

@@ -7,12 +7,13 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use { 'wbthomason/packer.nvim' }
   use { "catppuccin/nvim", as = "catppuccin" }
+  use { 'folke/tokyonight.nvim' }
   use { 'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
   }
-  use {'akinsho/bufferline.nvim',
+  use { 'akinsho/bufferline.nvim',
     tag = "v2.*",
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
@@ -26,9 +27,9 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim',
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   }
   use { 'fedepujol/move.nvim' }
@@ -47,17 +48,17 @@ return require('packer').startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  -- use { 'neovim/nvim-lspconfig' }
-  use { 'hrsh7th/nvim-cmp'  }
-  use { 'hrsh7th/cmp-nvim-lsp'  }
-  use { 'hrsh7th/cmp-buffer'  }
-  use { 'hrsh7th/cmp-path'  }
-  use { 'hrsh7th/cmp-calc'  }
-  use { 'hrsh7th/cmp-vsnip'  }
-  use { 'hrsh7th/vim-vsnip'  }
+  use { "folke/lua-dev.nvim" }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-calc' }
+  use { 'hrsh7th/cmp-vsnip' }
+  use { 'hrsh7th/vim-vsnip' }
   -- use { 'andersevenrud/cmp-tmux' }
   use { 'ray-x/cmp-treesitter' }
-  use { 'lukas-reineke/cmp-under-comparator'}
+  use { 'lukas-reineke/cmp-under-comparator' }
   use { 'f3fora/cmp-spell' }
   -- For nice little icons in the completion popup.
   use { 'onsails/lspkind-nvim' }
@@ -73,4 +74,5 @@ return require('packer').startup(function(use)
   use { 'mbbill/undotree' }
   use { 'dense-analysis/ale' }
   use { 'ranelpadon/python-copy-reference.vim' }
+  use { 'mfussenegger/nvim-lint' }
 end)
