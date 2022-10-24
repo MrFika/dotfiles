@@ -63,7 +63,7 @@ vim.keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts_noremap_silent)
 vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts_noremap_silent)
 
 -- Bufferline shortcuts.
-for i = 9, 1, -1 do
+for i = 1, 9, 1 do
   vim.keymap.set('n', '<leader>' .. i, '<Cmd>BufferLineGoToBuffer ' .. i .. '<CR>zz', { silent = true })
 end
 
@@ -75,3 +75,8 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, opts_noremap_silent)
 
 vim.keymap.set('n', '<leader>rp', ':PythonCopyReferencePytest<CR>')
 vim.keymap.set('n', '<leader>rd', ':PythonCopyReferenceDotted<CR>')
+
+local dap_python = require('dap-python')
+vim.keymap.set('n', '<leader>dm', dap_python.test_method, opts_noremap_silent)
+vim.keymap.set('n', '<leader>df', dap_python.test_class, opts_noremap_silent)
+vim.keymap.set('v', '<leader>ds', dap_python.debug_selection, opts_noremap_silent)

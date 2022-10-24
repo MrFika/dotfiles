@@ -78,7 +78,7 @@ pycodestyle.args = {
   '-',
 }
 local luacheck = require('lint.linters.luacheck')
-luacheck.args = {'--read-globals','vim', '--globals', 'vim.g', '--formatter', 'plain', '--codes', '--ranges', '-' }
+luacheck.args = { '--read-globals', 'vim', '--globals', 'vim.g', '--formatter', 'plain', '--codes', '--ranges', '-' }
 
 local pylint = require('lint.linters.pylint')
 pylint.args = {
@@ -93,3 +93,51 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+
+-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+-- https://github.com/mhartington/formatter.nvim
+require("formatter").setup {
+  -- Enable or disable logging
+  logging = true,
+  -- Set the log level
+  log_level = vim.log.levels.WARN,
+  -- All formatter configurations are opt-in
+  filetype = {
+    -- Formatter configurations for filetype "lua" go here
+    -- and will be executed in order
+    python = {
+      -- require("formatter.filetypes.python").black,
+      require("formatter.filetypes.python").isort,
+      require("formatter.filetypes.python").docformatter,
+    },
+    lua = {
+      require("formatter.filetypes.lua").stylua,
+    },
+
+    -- Use the special "*" filetype for defining formatter configurations on
+    -- any filetype
+    ["*"] = {
+      -- "formatter.filetypes.any" defines default configurations for any
+      -- filetype
+      require("formatter.filetypes.any").remove_trailing_whitespace
+    }
+  }
+}
+
+require("symbols-outline").setup()
+
+
+-- require('dap-python').setup('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
+require('dap-python').setup('python')
+require("dapui").setup()
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open({})
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close({})
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close({})
+end

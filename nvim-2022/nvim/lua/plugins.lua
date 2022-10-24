@@ -75,4 +75,21 @@ return require('packer').startup(function(use)
   use { 'dense-analysis/ale' }
   use { 'ranelpadon/python-copy-reference.vim' }
   use { 'mfussenegger/nvim-lint' }
+  use { 'mhartington/formatter.nvim' }
+
+  use { 'simrat39/symbols-outline.nvim' }
+
+  use {
+    'mfussenegger/nvim-dap-python',
+    requires = {
+      'mfussenegger/nvim-dap',
+    },
+  }
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {
+      "mfussenegger/nvim-dap"
+    }
+  }
+
 end)
