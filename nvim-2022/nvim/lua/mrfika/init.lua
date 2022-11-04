@@ -66,36 +66,40 @@ require('nvim-treesitter.configs').setup {
 require('Comment').setup()
 require('gitsigns').setup()
 
-require('lint').linters_by_ft = {
+local lint = require('lint')
+lint.linters_by_ft = {
   python = { 'pylint', 'pycodestyle', 'pydocstyle', },
   lua = { 'luacheck' }
 }
 
-local pycodestyle = require('lint.linters.pycodestyle')
+local pycodestyle = lint.linters.pycodestyle
 pycodestyle.args = {
   '--line-length=120',
   '--format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s',
   '-',
 }
-local luacheck = require('lint.linters.luacheck')
+local luacheck = lint.linters.luacheck
 luacheck.args = { '--read-globals', 'vim', '--globals', 'vim.g', '--formatter', 'plain', '--codes', '--ranges', '-' }
 
-local pylint = require('lint.linters.pylint')
+-- local proj_dir = vim.fs.dirname(vim.fs.find({'pylintrc', 'setup.py'}, { upward = true })[1])
+local pylint = lint.linters.pylint
 pylint.args = {
   '-f', 'json',
-  -- '-pylintrc', vim.fs.dirname(vim.fs.find({'pyproject.toml', 'setup.py'}, { upward = true })[1])
+  -- '-pylintrc', proj_dir,
   -- "--init-hook='import sys; sys.path.append(\".\")'",
 }
 -- let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
-    require("lint").try_lint()
+    lint.try_lint()
   end,
 })
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 -- https://github.com/mhartington/formatter.nvim
+local format_utils = require("formatter.util")
+-- format_utils.get_current_buffer_file_name()
 require("formatter").setup {
   -- Enable or disable logging
   logging = true,

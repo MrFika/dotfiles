@@ -91,5 +91,6 @@ return require('packer').startup(function(use)
       "mfussenegger/nvim-dap"
     }
   }
+  use { "ThePrimeagen/vim-be-good" }
 
 end)

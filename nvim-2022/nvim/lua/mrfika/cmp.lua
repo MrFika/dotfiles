@@ -112,12 +112,11 @@ local on_attach = function(client, bufnr)
 
 end
 
-
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-require('lspconfig').sumneko_lua.setup {
+local lsp_config = require('lspconfig')
+lsp_config.sumneko_lua.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -128,15 +127,15 @@ require('lspconfig').sumneko_lua.setup {
     }
   },
 }
-require('lspconfig').pyright.setup {
+lsp_config.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-require('lspconfig').vimls.setup {
+lsp_config.vimls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-require('lspconfig').bashls.setup {
+lsp_config.bashls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
