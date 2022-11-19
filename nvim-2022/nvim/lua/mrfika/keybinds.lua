@@ -33,13 +33,13 @@ vim.keymap.set('n', '<C-c>', '<ESC>', {})
 -- PLUGIN SPECIFIC KEYBINDS
 
 -- TELESCOPE
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>ft', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
+vim.keymap.set('n', '<leader>ft', telescope_builtin.git_files, {})
+vim.keymap.set('n', '<leader>fd', telescope_builtin.diagnostics, {})
 
 -- Undo Tree
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', {})

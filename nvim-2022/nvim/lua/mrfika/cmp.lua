@@ -5,13 +5,12 @@ autopairs.setup({
   disable_filetype = { "TelescopePrompt", "vim" },
 })
 
-require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "sumneko_lua", "pyright", "vimls" }
 })
 
 -- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
-require("lua-dev").setup({
+require("neodev").setup({
   -- add any options here, or leave empty to use the default settings
 })
 
@@ -109,6 +108,25 @@ local on_attach = function(client, bufnr)
   -- Find references & definitions.
   vim.keymap.set('n', '<leader>fr', ':Telescope lsp_references<CR>', bufopts)
   vim.keymap.set('n', '<leader>fd', ':Telescope lsp_definitions<CR>', bufopts)
+  -- Highlighting references.
+  -- See: https://sbulav.github.io/til/til-neovim-highlight-references/
+  -- for the highlight trigger time see: `vim.opt.updatetime`
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = vim.lsp.buf.document_highlight,
+      buffer = bufnr,
+      group = "lsp_document_highlight",
+      desc = "Document Highlight",
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      callback = vim.lsp.buf.clear_references,
+      buffer = bufnr,
+      group = "lsp_document_highlight",
+      desc = "Clear All the References",
+    })
+  end
 
 end
 

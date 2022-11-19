@@ -1,7 +1,29 @@
+-----------------------------------------------------------
+-- Plugin manager configuration file
+-----------------------------------------------------------
+
+-- Plugin manager: packer.nvim
+-- url: https://github.com/wbthomason/packer.nvim
+
+-- For information about installed plugins see the README:
+-- neovim-lua/README.md
+-- https://github.com/brainfucksec/neovim-lua#readme
+
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- Automatically install packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -10,13 +32,13 @@ return require('packer').startup(function(use)
   use { 'folke/tokyonight.nvim' }
   use { 'kyazdani42/nvim-tree.lua',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      'kyazdani42/nvim-web-devicons',
     },
   }
   use { 'akinsho/bufferline.nvim',
-    tag = "v2.*",
+    tag = "v3.*",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      'kyazdani42/nvim-web-devicons',
     },
   }
   use {
@@ -33,9 +55,19 @@ return require('packer').startup(function(use)
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   }
   use { 'fedepujol/move.nvim' }
-  use { 'numToStr/Comment.nvim' }
   use { 'tpope/vim-fugitive' }
-  use { 'lewis6991/gitsigns.nvim' }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -45,10 +77,15 @@ return require('packer').startup(function(use)
 
   use {
     "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  }
+  use {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use { "folke/lua-dev.nvim" }
+  use { "folke/neodev.nvim" }
   use { 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-buffer' }
@@ -68,16 +105,19 @@ return require('packer').startup(function(use)
   -- " Bracket, parenthesis autocompletion
   use { 'windwp/nvim-autopairs' }
 
-
   -- " Undo history
-
   use { 'mbbill/undotree' }
-  use { 'dense-analysis/ale' }
   use { 'ranelpadon/python-copy-reference.vim' }
-  use { 'mfussenegger/nvim-lint' }
-  use { 'mhartington/formatter.nvim' }
+  -- use { 'dense-analysis/ale' }
+  -- use { 'mfussenegger/nvim-lint' }
+  -- use { 'mhartington/formatter.nvim' }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
 
-  use { 'simrat39/symbols-outline.nvim' }
+  use { 'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
+    end
+  }
 
   use {
     'mfussenegger/nvim-dap-python',
@@ -92,5 +132,14 @@ return require('packer').startup(function(use)
     }
   }
   use { "ThePrimeagen/vim-be-good" }
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  }
+
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
 end)
