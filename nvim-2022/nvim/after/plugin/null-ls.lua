@@ -27,6 +27,7 @@ local my_sources = {
   -- Diagnostics
   builtins.diagnostics.luacheck,
   builtins.diagnostics.pylint,
+  -- Special thingy for pylint might not be needed.
   -- "--init-hook='import sys; sys.path.append(\".\")'"
   builtins.diagnostics.mypy,
   builtins.diagnostics.pycodestyle.with({

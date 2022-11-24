@@ -27,23 +27,11 @@ require("nvim-tree").setup({
 -- Statusline at the bottom of the screen.
 require("lualine").setup({
 	options = {
-		theme = "auto",
+		theme = "catppuccin",
 	},
 	global_status = true,
 })
 
--- Buffer tabs at the top of the screen.
-require("bufferline").setup({
-	options = {
-		offsets = {
-			filetype = "NvimTree",
-			text = "File explorer",
-			highlight = "Directory",
-			text_align = "left",
-		},
-		diagnostics = "nvim_lsp",
-	},
-})
 
 require("telescope").setup({
 	defaults = {

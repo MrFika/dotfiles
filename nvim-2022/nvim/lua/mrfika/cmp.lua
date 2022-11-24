@@ -19,6 +19,7 @@ require("neodev").setup({
 local cmp = require 'cmp'
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,  -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/17
   snippet = {
     expand = function(args)
       -- For `vsnip` user.
@@ -96,7 +97,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<leader>gc', vim.lsp.buf.incoming_calls, bufopts)
   vim.keymap.set('n', '<C-space>', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
@@ -111,22 +112,22 @@ local on_attach = function(client, bufnr)
   -- Highlighting references.
   -- See: https://sbulav.github.io/til/til-neovim-highlight-references/
   -- for the highlight trigger time see: `vim.opt.updatetime`
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
-    vim.api.nvim_create_autocmd("CursorHold", {
-      callback = vim.lsp.buf.document_highlight,
-      buffer = bufnr,
-      group = "lsp_document_highlight",
-      desc = "Document Highlight",
-    })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      callback = vim.lsp.buf.clear_references,
-      buffer = bufnr,
-      group = "lsp_document_highlight",
-      desc = "Clear All the References",
-    })
-  end
+  -- if client.server_capabilities.documentHighlightProvider then
+  --   vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+  --   vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+  --   vim.api.nvim_create_autocmd("CursorHold", {
+  --     callback = vim.lsp.buf.document_highlight,
+  --     buffer = bufnr,
+  --     group = "lsp_document_highlight",
+  --     desc = "Document Highlight",
+  --   })
+  --   vim.api.nvim_create_autocmd("CursorMoved", {
+  --     callback = vim.lsp.buf.clear_references,
+  --     buffer = bufnr,
+  --     group = "lsp_document_highlight",
+  --     desc = "Clear All the References",
+  --   })
+  -- end
 
 end
 

@@ -1,9 +1,10 @@
 -- KEYBINDS
 --
 -- General (not plugin specific)
--- Source the init.vim to refresh config changes.
-vim.keymap.set("n", "<leader><CR>", ":so ~/dotfiles/nvim-2022/nvim/init.lua<CR>", {})
+-- Source the init.vim to refresh config changes. (Not sure how to do this correctly with init.lua)
+vim.keymap.set("n", "<leader><CR>", ":so %", {})
 
+local opts_noremap_silent = { noremap = true, silent = true }
 -- Window movement
 vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", {})
 vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", {})
@@ -14,8 +15,8 @@ vim.keymap.set("n", "<leader>+", ":vertial resize +5<CR>", { silent = true })
 vim.keymap.set("n", "<leader>-", ":vertial resize -5<CR>", { silent = true })
 
 -- Navigate quickfix list.
-vim.keymap.set("n", "<C-j>", ":cn<CR>", {})
-vim.keymap.set("n", "<C-k>", ":cp<CR>", {})
+vim.keymap.set("n", "<C-j>", ":cn<CR>", opts_noremap_silent)
+vim.keymap.set("n", "<C-k>", ":cp<CR>", opts_noremap_silent)
 
 -- Copy to system clipboard.
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', {})
@@ -50,7 +51,6 @@ vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", {})
 vim.keymap.set("n", "<F4>", ":NvimTreeToggle<CR>", {})
 
 -- Move.nvim block and line movement.
-local opts_noremap_silent = { noremap = true, silent = true }
 -- Normal-mode commands
 vim.keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", opts_noremap_silent)
 vim.keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", opts_noremap_silent)

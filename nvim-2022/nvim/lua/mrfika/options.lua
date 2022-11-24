@@ -15,11 +15,12 @@ local opt = vim.opt -- Set options (global/buffer/windows-scoped)
 -- General
 -----------------------------------------------------------
 opt.mouse = "a" -- Enable mouse support
-opt.clipboard = "unnamedplus" -- Copy/paste to system clipboard
+-- opt.clipboard = "unnamedplus" -- Copy/paste to system clipboard
 opt.swapfile = false -- Don't use swapfile
-opt.completeopt = "menuone,noinsert,noselect" -- Autocomplete options
--- opt.completeopt = "menu,menuone,noselect"
+-- opt.completeopt = "menuone,noinsert,noselect" -- Autocomplete options
+opt.completeopt = "menu,menuone,noselect"
 vim.opt.spelllang = "en"
+vim.opt.spell = true
 -- " Make F2 paste-toggle button. Paste without autoindent.
 opt.pastetoggle = "<F2>"
 
