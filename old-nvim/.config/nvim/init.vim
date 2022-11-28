@@ -93,7 +93,7 @@ require('lualine').setup()
 
 
 -- Signature setup 
-local lsp_signature_setup = {
+local lsp_local_opts = {
   on_attach = function(client, bufnr)
     require "lsp_signature".on_attach({
       bind = true,
@@ -108,16 +108,26 @@ local lsp_installer = require("nvim-lsp-installer")
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
-    -- local opts = {}
+    local opts = {}
 
     -- (optional) Customize the options passed to the server
     -- if server.name == "tsserver" then
     --     opts.root_dir = function() ... end
     -- end
+    -- ... other configs
+    if server.name == "sumneko_lua" then
+        opts.settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" }
+            }
+          }
+        }
+    end
 
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(lsp_signature_setup)
+    server:setup(opts)
 end)
 
 -- Bufferline setup 
@@ -203,7 +213,7 @@ lua << EOF
 require'nvim-tree'.setup{
     open_on_setup = false,
     open_on_tab = false,
-    diagnostic = {
+    diagnostics = {
         enable = false
     },
     git = {
@@ -366,8 +376,8 @@ set mouse=a
 set showmatch
 set incsearch
 
-au BufRead,BufNewFile *.py set expandtab
 set expandtab
+au BufRead,BufNewFile *.py set expandtab
 set textwidth=120
 set colorcolumn=120
 set tabstop=4
