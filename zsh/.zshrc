@@ -1,21 +1,45 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:$HOME/bin:/usr/local/bin
-export PATH=$PATH:$HOME/.local/bin:/usr/local/cuda/bin
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$HOME/bin:/usr/local/bin:/home/$USER/.local/bin:$PATH
+
+# Add for npm folder for correct permissions for global installations.
+if [[ -d ~/.npm-global/bin ]]; then
+    export PATH=~/.npm-global/bin:$PATH
+fi
+
+# Add gradle to path for groovyls
+GRADLE_HOME=/opt/gradle/gradle-6.3
+if [[ -d "$GRADLE_HOME" ]]; then
+    export GRADLE_HOME
+    export PATH=${GRADLE_HOME}/bin:${PATH}
+fi
+
+# Add golang support
+if [[ -d /usr/local/go/bin ]]; then
+    export PATH=$PATH:/usr/local/go/bin
+fi
+
+# Add rust to path
+if [[ -d /home/$USER/.cargo/bin ]]; then
+    export PATH=$PATH:/home/$USER/.cargo/bin
+fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export auto_proxy="http://wwwproxy/auto"
+export AUTO_PROXY="http://wwwproxy/auto"
+export http_proxy="http://wwwproxy.se.axis.com:3128"
+export HTTP_PROXY="http://wwwproxy.se.axis.com:3128"
+export https_proxy="http://wwwproxy.se.axis.com:3128"
+export HTTPS_PROXY="http://wwwproxy.se.axis.com:3128"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="victors"
+
+export HISTSIZE=20000
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -30,13 +54,14 @@ ZSH_THEME="robbyrussell"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -51,9 +76,6 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -77,12 +99,21 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip tmux tmuxinator)
-
-# zsh-pyenv plugin https://github.com/mattberther/zsh-pyenv
+plugins=(
+    git
+    pip
+    python
+    ripgrep
+    tmux
+    virtualenv
+    zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
+if [[ -f ~/.bashrc_scripts.sh ]]; then
+    source ~/.bashrc_scripts.sh
+fi
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -90,7 +121,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export EDITOR='nvim'
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -98,6 +128,9 @@ export EDITOR='nvim'
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR='nvim'
+alias vim="nvim"
+alias vi="nvim"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -111,3 +144,9 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [[ -d ~/.rvm/bin ]]; then
+    source ~/.rvm/scripts/rvm
+    export PATH="$PATH:$HOME/.rvm/bin"
+fi
