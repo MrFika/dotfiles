@@ -1,5 +1,0 @@
-require("plugins")
-require("core")
-require("core.cmp")
-require("core.keybinds")
-require("core.options")
