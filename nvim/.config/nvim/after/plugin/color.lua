@@ -1,4 +1,4 @@
-vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
 local catppuccin = require("catppuccin")
 catppuccin.setup({
@@ -26,7 +26,6 @@ catppuccin.setup({
 		},
 	},
 })
-
 -- Buffer tabs at the top of the screen.
 require("bufferline").setup({
 	options = {
