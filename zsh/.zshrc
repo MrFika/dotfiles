@@ -26,7 +26,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
-if [[ hostname -d == "se.axis.com" ]]; then
+if [[ $(hostname -d) == "se.axis.com" ]]; then
     export auto_proxy="http://wwwproxy/auto"
     export AUTO_PROXY="http://wwwproxy/auto"
     export http_proxy="http://wwwproxy.se.axis.com:3128"
