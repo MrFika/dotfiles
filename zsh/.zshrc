@@ -26,12 +26,14 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
-export auto_proxy="http://wwwproxy/auto"
-export AUTO_PROXY="http://wwwproxy/auto"
-export http_proxy="http://wwwproxy.se.axis.com:3128"
-export HTTP_PROXY="http://wwwproxy.se.axis.com:3128"
-export https_proxy="http://wwwproxy.se.axis.com:3128"
-export HTTPS_PROXY="http://wwwproxy.se.axis.com:3128"
+if [[ hostname -d == "se.axis.com" ]]; then
+    export auto_proxy="http://wwwproxy/auto"
+    export AUTO_PROXY="http://wwwproxy/auto"
+    export http_proxy="http://wwwproxy.se.axis.com:3128"
+    export HTTP_PROXY="http://wwwproxy.se.axis.com:3128"
+    export https_proxy="http://wwwproxy.se.axis.com:3128"
+    export HTTPS_PROXY="http://wwwproxy.se.axis.com:3128"
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
