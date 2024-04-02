@@ -4,8 +4,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- File tree to the left.
 require("nvim-tree").setup({
-	open_on_setup = false,
-	open_on_tab = false,
 	diagnostics = {
 		enable = false,
 	},
@@ -47,6 +45,9 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
+  -- indent = {
+  --   enable = true
+  -- },
 	ensure_installed = {
 		"bash",
 		"c",
