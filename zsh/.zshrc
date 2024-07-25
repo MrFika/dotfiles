@@ -144,6 +144,7 @@ alias vi="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+bindkey '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
