@@ -22,7 +22,7 @@ opt.completeopt = "menu,menuone,noselect"
 vim.opt.spelllang = "en"
 vim.opt.spell = true
 -- " Make F2 paste-toggle button. Paste without autoindent.
-opt.pastetoggle = "<F2>"
+-- opt.pastetoggle = "<F2>"
 
 -----------------------------------------------------------
 -- Memory, CPU
@@ -73,6 +73,7 @@ end
 
 local python_settings = function()
   opt.expandtab = true
+  -- opt.smartindent = false
 end
 
 -----------------------------------------------------------

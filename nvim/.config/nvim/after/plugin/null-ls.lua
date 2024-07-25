@@ -30,12 +30,12 @@ local my_sources = {
 	-- Special thingy for pylint might not be needed.
 	-- "--init-hook='import sys; sys.path.append(\".\")'"
 	-- builtins.diagnostics.mypy,
-	builtins.diagnostics.pycodestyle.with({
-		extra_args = { "--max-line-length", "120" },
-	}),
-	builtins.diagnostics.pydocstyle.with({
-		extra_args = { "--ignore", "D401,D213,D203" },
-	}),
+	-- builtins.diagnostics.pycodestyle.with({
+	-- 	extra_args = { "--max-line-length", "120" },
+	-- }),
+	-- builtins.diagnostics.pydocstyle.with({
+	-- 	extra_args = { "--ignore", "D401,D213,D203" },
+	-- }),
 
 }
 

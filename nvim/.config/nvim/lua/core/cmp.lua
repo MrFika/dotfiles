@@ -150,7 +150,16 @@ lsp_config.lua_ls.setup({
     },
   },
 })
-lsp_config.pyright.setup({
+lsp_config.basedpyright.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      typeCheckingMode = "standard"
+    }
+  }
+})
+lsp_config.ruff_lsp.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
