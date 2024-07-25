@@ -105,7 +105,6 @@ plugins=(
     git
     pip
     python
-    ripgrep
     tmux
     virtualenv
     zsh-autosuggestions
