@@ -7,7 +7,7 @@ autopairs.setup({
 
 require("mason-lspconfig").setup({
   -- For some reason not working....???
-  ensure_installed = { "lua_ls", "pyright", "vimls" },
+  ensure_installed = { "lua_ls", "ruff", "vimls" },
 })
 
 -- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
@@ -46,7 +46,7 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     -- For vsnip user.
-    { name = "buffer", options = { keyword_length = 5 } },
+    { name = "buffer",                 options = { keyword_length = 5 } },
     { name = "path" },
     { name = "spell" },
     { name = "calc" },
@@ -138,44 +138,45 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local lsp_config = require("lspconfig")
-lsp_config.lua_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
+vim.lsp.config("lua_lsp",
+  {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
       },
     },
-  },
-})
-lsp_config.basedpyright.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    basedpyright = {
-      typeCheckingMode = "standard"
+  })
+vim.lsp.config("basedpyright",
+  {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      basedpyright = {
+        typeCheckingMode = "standard"
+      }
     }
-  }
-})
-lsp_config.ruff_lsp.setup({
+  })
+vim.lsp.config("ruff", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
-lsp_config.vimls.setup({
+vim.lsp.config("vimls",{
   on_attach = on_attach,
   capabilities = capabilities,
 })
-lsp_config.bashls.setup({
+vim.lsp.config("bashls",{
   on_attach = on_attach,
   capabilities = capabilities,
 })
-lsp_config.dockerls.setup({
+vim.lsp.config("dockerls",{
   on_attach = on_attach,
   capabilities = capabilities,
 })
-lsp_config.rust_analyzer.setup({
+vim.lsp.config("rust_analyzer",{
   on_attach = on_attach,
   capabilities = capabilities,
 })

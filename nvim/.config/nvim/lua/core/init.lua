@@ -40,30 +40,30 @@ require("telescope").setup({
 })
 require("telescope").load_extension("fzf")
 
-require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-  -- indent = {
-  --   enable = true
-  -- },
-	ensure_installed = {
-		"bash",
-		"c",
-		"cpp",
-		"css",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"python",
-		"rust",
-		"typescript",
-		"vim",
-		"yaml",
-	},
-})
+-- require("nvim-treesitter.configs").setup({
+-- 	highlight = {
+-- 		enable = true,
+-- 		additional_vim_regex_highlighting = false,
+-- 	},
+--   -- indent = {
+--   --   enable = true
+--   -- },
+-- 	ensure_installed = {
+-- 		"bash",
+-- 		"c",
+-- 		"cpp",
+-- 		"css",
+-- 		"html",
+-- 		"javascript",
+-- 		"json",
+-- 		"lua",
+-- 		"python",
+-- 		"rust",
+-- 		"typescript",
+-- 		"vim",
+-- 		"yaml",
+-- 	},
+-- })
 
 -- require('dap-python').setup('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
 require("dap-python").setup("python")

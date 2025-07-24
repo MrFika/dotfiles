@@ -20,10 +20,7 @@ local my_sources = {
 	builtins.formatting.prettier.with({
 		filetypes = { "html", "json", "yaml", "markdown" },
 	}),
-	builtins.formatting.black.with({
-		extra_args = { "-l", "120" },
-	}),
-
+	builtins.formatting.black,
 	-- Diagnostics
 	builtins.diagnostics.luacheck,
 	builtins.diagnostics.pylint,
