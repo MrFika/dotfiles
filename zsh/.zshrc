@@ -108,6 +108,7 @@ plugins=(
     tmux
     virtualenv
     zsh-autosuggestions
+    uv
 )
 
 source $ZSH/oh-my-zsh.sh
