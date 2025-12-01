@@ -7,7 +7,7 @@ if [[ -d ~/.npm-global/bin ]]; then
 fi
 
 # Add gradle to path for groovyls
-GRADLE_HOME=/opt/gradle/gradle-6.3
+GRADLE_HOME=/opt/gradle/gradle-9.0.0
 if [[ -d "$GRADLE_HOME" ]]; then
     export GRADLE_HOME
     export PATH=${GRADLE_HOME}/bin:${PATH}
@@ -26,20 +26,15 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
-if [[ $(hostname -d) == "se.axis.com" ]]; then
-    export auto_proxy="http://wwwproxy/auto"
-    export AUTO_PROXY="http://wwwproxy/auto"
-    export http_proxy="http://wwwproxy.se.axis.com:3128"
-    export HTTP_PROXY="http://wwwproxy.se.axis.com:3128"
-    export https_proxy="http://wwwproxy.se.axis.com:3128"
-    export HTTPS_PROXY="http://wwwproxy.se.axis.com:3128"
-fi
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="victors"
+if [[ -f /home/$USER/.oh-my-zsh/custom/themes/victors.zsh-theme ]]; then  # Only use victors theme if installed.
+    ZSH_THEME="victors"
+else
+    ZSH_THEME="robbyrussell"
+fi
 
 export HISTSIZE=20000
 
@@ -130,12 +125,17 @@ fi
 #   export EDITOR='mvim'
 # fi
 
-export EDITOR='nvim'
-alias vim="nvim"
-alias vi="nvim"
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Bind ctrl + space to accept zsh-autosuggestion.
+bindkey '^ ' autosuggest-accept
 
+# Only set nvim as recommended editor if nvim is installed on the system.
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR='nvim'
+    alias vim="nvim"
+    alias vi="nvim"
+else
+    export EDITOR='vim'
+fi
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -144,7 +144,19 @@ alias vi="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-bindkey '^ ' autosuggest-accept
+
+# Git aliases.
+alias pull_master="git checkout master && git pull"
+alias rebase_master="git fetch -o origin/master && git rebase origin/master"
+alias gac="git-areview-checkout"
+alias gar="git-areview-rebase"
+
+# Proxy Stuff.
+alias set_axis_proxy='export {http,https}_proxy="http://wwwproxy.se.axis.com:3128" \
+                      export {HTTP,HTTPS}_PROXY="http://wwwproxy.se.axis.com:3128" \
+                      export auto_proxy="http://wwwproxy/auto" \
+                      export AUTO_PROXY="http://wwwproxy/auto"'
+alias unset_axis_proxy="unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY all_proxy ALL_PROXY auto_proxy AUTO_PROXY"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

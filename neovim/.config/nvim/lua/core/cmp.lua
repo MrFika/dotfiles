@@ -5,16 +5,6 @@ autopairs.setup({
   disable_filetype = { "TelescopePrompt", "vim" },
 })
 
-require("mason-lspconfig").setup({
-  -- For some reason not working....???
-  ensure_installed = { "lua_ls", "ruff", "vimls" },
-})
-
--- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
-require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
-
 -- CMP Completion
 -- Setup nvim-cmp.
 local cmp = require("cmp")
@@ -138,45 +128,114 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-vim.lsp.config("lua_lsp",
-  {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim" },
+-- ## Remove
+-- local lsp_config = require("lspconfig")
+
+vim.lsp.config("*", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+vim.lsp.config("basedpyright", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      typeCheckingMode = "recommended",
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportAny = false,
+          reportExplicitAny = false,
+          reportUnusedCallResult = false,
+          reportImplicitStringConcatenation = false,
+          reportMissingTypeStubs = false,
+          reportUntypedFunctionDecorator = false,
         },
       },
     },
-  })
-vim.lsp.config("basedpyright",
-  {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      basedpyright = {
-        typeCheckingMode = "standard"
-      }
-    }
-  })
+    stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+  },
+})
+
+vim.lsp.config("luals", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+
 vim.lsp.config("ruff", {
   on_attach = on_attach,
   capabilities = capabilities,
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    },
+  },
 })
-vim.lsp.config("vimls",{
+
+vim.lsp.config("ansiblels", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "yaml", "yml", "ansible" },
+  ansible = {
+    python = {
+      interpreterPath = "python",
+    },
+    ansible = {
+      path = "uvx ansible",
+    },
+    executionEnvironment = {
+      enabled = false,
+    },
+  },
+})
+
+-- These could just be vim.lsp.start()
+vim.lsp.config("vimls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
-vim.lsp.config("bashls",{
+vim.lsp.config("gopls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
-vim.lsp.config("dockerls",{
+vim.lsp.config("bashls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
-vim.lsp.config("rust_analyzer",{
+vim.lsp.config("dockerls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+vim.lsp.config("rust_analyzer", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+vim.lsp.config("clangd", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+vim.lsp.config("groovyls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    groovy = {
+      classpath = {
+        "/home/victorn/jenkins/jenkins.war",
+        "/home/victorn/jenkins/bff/src/",
+        "/home/victorn/jenkins/bff/vars/"
+      }
+    },
+  },
+})
+vim.lsp.config("copilot", {
   on_attach = on_attach,
   capabilities = capabilities,
 })

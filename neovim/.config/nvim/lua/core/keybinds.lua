@@ -33,22 +33,9 @@ vim.keymap.set("n", "<C-c>", "<ESC>", {})
 -- *** *** *** *** *** ***
 -- PLUGIN SPECIFIC KEYBINDS
 
--- TELESCOPE
-local telescope_builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags, {})
-vim.keymap.set("n", "<leader>ft", telescope_builtin.git_files, {})
-vim.keymap.set("n", "<leader>fd", telescope_builtin.diagnostics, {})
-
--- Undo Tree
-vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>", {})
-vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>", {})
-
--- NvimTree
-vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", {})
-vim.keymap.set("n", "<F4>", ":NvimTreeToggle<CR>", {})
+-- -- Undo Tree
+-- vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>", {})
+-- vim.keymap.set("n", "<F5>", ":UndotreeToggle<CR>", {})
 
 -- Bufferline shortcuts.
 for i = 1, 9, 1 do
@@ -64,7 +51,7 @@ vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts_noremap_silent)
 vim.keymap.set("n", "<leader>rp", ":PythonCopyReferencePytest<CR>")
 vim.keymap.set("n", "<leader>rd", ":PythonCopyReferenceDotted<CR>")
 
-local dap_python = require("dap-python")
-vim.keymap.set("n", "<leader>dm", dap_python.test_method, opts_noremap_silent)
-vim.keymap.set("n", "<leader>df", dap_python.test_class, opts_noremap_silent)
-vim.keymap.set("v", "<leader>ds", dap_python.debug_selection, opts_noremap_silent)
+-- local dap_python = require("dap-python")
+-- vim.keymap.set("n", "<leader>dm", dap_python.test_method, opts_noremap_silent)
+-- vim.keymap.set("n", "<leader>df", dap_python.test_class, opts_noremap_silent)
+-- vim.keymap.set("v", "<leader>ds", dap_python.debug_selection, opts_noremap_silent)
