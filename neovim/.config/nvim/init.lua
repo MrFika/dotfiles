@@ -1,5 +1,5 @@
-require("plugins")
+require("config.lazy")
+require("core.options")
 require("core")
 require("core.cmp")
 require("core.keybinds")
-require("core.options")

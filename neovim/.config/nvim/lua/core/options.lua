@@ -43,7 +43,7 @@ opt.nu = true
 opt.showmatch = true
 opt.incsearch = true
 opt.termguicolors = true
-opt.background = "dark"
+opt.background = "light"
 opt.wrap = false
 opt.scrolloff = 8
 opt.sidescrolloff = 8
@@ -73,7 +73,6 @@ end
 
 local python_settings = function()
   opt.expandtab = true
-  -- opt.smartindent = false
 end
 
 -----------------------------------------------------------

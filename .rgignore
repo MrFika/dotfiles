@@ -1,0 +1,16 @@
+# .rgignore - exceptions for ripgrep
+
+# Ignore these directories even with --hidden
+node_modules/
+.git/
+target/
+dist/
+
+# But allow searching in these hidden folders
+!.config/
+!.zshrc
+!.bashrc_scripts.sh
+!.ssh/
+!.tmux.conf
+!.allowed-services
+!.rgignore
